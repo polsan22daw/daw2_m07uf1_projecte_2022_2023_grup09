@@ -11,8 +11,8 @@ else{
     echo "<h2>Usuari normal</h2><br>";
 }
 
-if ((isset($_POST['id'])) && (isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'])) && (isset($_POST['nota2'])) && (isset($_POST['nota3'])) && (isset($_POST['nota4'])) && (isset($_POST['nota5'])) && (isset($_POST['nota6']))){		
-    $afegit=fNouAlumne($_POST['id'],$_POST['nom'],$_POST['cognom'],$_POST['nota1'],$_POST['nota2'],$_POST['nota3'],$_POST['nota4'],$_POST['nota5'],$_POST['nota6']);
+if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'])) && (isset($_POST['nota2'])) && (isset($_POST['nota3'])) && (isset($_POST['nota4'])) && (isset($_POST['nota5'])) && (isset($_POST['nota6']))){		
+    $afegit=fNouAlumne($_POST['nom'],$_POST['cognom'],$_POST['nota1'],$_POST['nota2'],$_POST['nota3'],$_POST['nota4'],$_POST['nota5'],$_POST['nota6']);
     $_SESSION['afegit']=$afegit;
     header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
 }	
@@ -33,8 +33,8 @@ if ((isset($_POST['id'])) && (isset($_POST['nom'])) && (isset($_POST['cognom']))
         <input type="text" name="nom" id="nom" required><br>
         <label for="cognom">Cognom:</label>
         <input type="text" name="cognom" id="cognom" required><br>
-        <label for="id">Identificador:</label>
-        <input type="number" name="id" id="id" required><br>
+        <!-- <label for="id">Identificador:</label>
+        <input type="number" name="id" id="id" required><br> -->
         <label for="nota">Nota M01:</label>
         <input type="number" name="nota1" id="nota1" required><br>
         <label for="nota">Nota M02:</label>

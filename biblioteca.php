@@ -20,7 +20,8 @@
 	function fLlegeixFitxer($nomFitxer){
 		if ($fp=fopen($nomFitxer,"r")) {
 			$midaFitxer=filesize($nomFitxer);
-			$dades = explode(PHP_EOL, fread($fp,$midaFitxer));		
+			$dades = explode(PHP_EOL, fread($fp,$midaFitxer));
+			// array_pop($dades);		
 			fclose($fp);
 		}
 		return $dades;
@@ -75,43 +76,23 @@
 		return $afegit;
 	}
 
-	function fNouAlumne($id,$nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6){
-		$alumne_nou="\n".$id.":".$nom.":".$cognom.":".$nota1.":".$nota2.":".$nota3.":".$nota4.":".$nota5.":".$nota6;
-		if ($fp=fopen(FITXER_ALUMNES,"a")) {
-			if (fwrite($fp,$alumne_nou)){
+	function fNouAlumne($nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6){
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		$alumnes_nou = array();
+		$id = count($alumnes)+1;
+		$alumne = $id.":".$nom.":".$cognom.":".$nota1.":".$nota2.":".$nota3.":".$nota4.":".$nota5.":".$nota6;
+		array_push($alumnes_nou,$alumne);
+		foreach ($alumnes as $alumne) {
+			array_push($alumnes_nou,$alumne);
+		}
+		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
+		if ($fp=fopen(FITXER_ALUMNES,"w")) {
+			if (fwrite($fp,$alumnes_nou)){
 				$afegit=true;
 			}
 			else{
 				$afegit=false;
-			}
-			fclose($fp);
-		}
-		else{
-			$afegit=false;
-		}
-		return $afegit;
-	}
-	
-	function fBorrarAlumne($id){
-		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		$alumnes_nou=array();
-		foreach ($alumnes as $alumne) {
-			$dadesAlumne = explode(":", $alumne);
-			$idAlumne = $dadesAlumne[0];
-			if($idAlumne != $id){
-				array_push($alumnes_nou,$alumne);
-			}
-		}
-		if ($fp=fopen(FITXER_ALUMNES,"w")) {
-			foreach ($alumnes_nou as $alumne_nou) {
-				if (fwrite($fp,$alumne_nou."\n")){
-					$afegit=true;
-				}
-				else{
-					$afegit=false;
-				}
-			}
-			fwrite($fp,"\r");
+			}				
 			fclose($fp);
 		}
 		else{
@@ -120,36 +101,58 @@
 		return $afegit;
 	}
 
-	function fModificarNota($id,$notaantiga,$notanova){
+	function fBorraAlumne($id){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		$alumnes_nou=array();
+		$alumnes_nou = array();
 		foreach ($alumnes as $alumne) {
 			$dadesAlumne = explode(":", $alumne);
-			$idAlumne = $dadesAlumne[0];
-			if($idAlumne == $id){
-				$alumne_nou="\n".$id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$dadesAlumne[5].":".$dadesAlumne[6].":".$dadesAlumne[7].":".$dadesAlumne[8];
-				$alumne_nou=substr_replace($alumne_nou,$notaantiga,$notanova,1);
-				array_push($alumnes_nou,$alumne_nou);
-			}
-			else{
+			$idAlumneActual = $dadesAlumne[0];
+			if($idAlumneActual != $id){
 				array_push($alumnes_nou,$alumne);
 			}
 		}
+		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
-			foreach ($alumnes_nou as $alumne_nou) {
-				if (fwrite($fp,$alumne_nou)){
-					$afegit=true;
-				}
-				else{
-					$afegit=false;
-				}
+			if (fwrite($fp,$alumnes_nou)){
+				$borrat=true;
 			}
+			else{
+				$borrat=false;
+			}				
 			fclose($fp);
 		}
 		else{
-			$afegit=false;
+			$borrat=false;
 		}
-		return $afegit;
+		return $borrat;
+	}
+
+	function fModificarNota($id,$notaantiga,$notanova){
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		$alumnes_nou = array();
+		foreach ($alumnes as $alumne) {
+			$dadesAlumne = explode(":", $alumne);
+			$idAlumneActual = $dadesAlumne[0];
+			if($idAlumneActual == $id){
+				$dadesAlumne[$notaantiga] = $notanova;
+				$alumne = implode(":",$dadesAlumne);
+			}
+			array_push($alumnes_nou,$alumne);
+		}
+		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
+		if ($fp=fopen(FITXER_ALUMNES,"w")) {
+			if (fwrite($fp,$alumnes_nou)){
+				$modificat=true;
+			}
+			else{
+				$modificat=false;
+			}				
+			fclose($fp);
+		}
+		else{
+			$modificat=false;
+		}
+		return $modificat;
 	}
 
 		

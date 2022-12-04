@@ -13,7 +13,7 @@ else{
 
 
 if (isset($_POST['id'])){		
-    $borrar=fBorrarAlumne($_POST['id']);
+    $borrar=fBorraAlumne($_POST['id']);
     $_SESSION['borrar']=$borrar;
     header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
 }	
@@ -42,7 +42,7 @@ if (isset($_POST['id'])){
         else{
             echo "L'Usuari no ha estat esborrat<br>";
             echo "Comprova si hi ha algún problema del sistema per poder esborrar usuaris<br>";
-            header("refresh: 2; url=avis.php");
+            // header("refresh: 2; url=avis.php");
             header("refresh: 2; url=esborrar_alumne.php");
         }
         unset($_SESSION['borrar']);

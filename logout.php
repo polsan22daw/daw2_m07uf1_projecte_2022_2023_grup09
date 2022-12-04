@@ -33,7 +33,6 @@
 			<br>
 			<input type="submit" value="Valida" />
 		</form>
-		<p><a href="interficie_usuari.php">Torna al menú del usuari</a></p>
 		<label class="diahora"> 
         <?php
 			require("./biblioteca.php");
