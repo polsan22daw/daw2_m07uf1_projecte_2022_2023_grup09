@@ -32,13 +32,13 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
     <form action="modificar_notes.php" method="post">
         <label for="id">Id del alumne:</label>
         <input type="text" name="id" id="id" required><br>
-        <select>
-            <option value="nota1" name="notaantiga">M01</option>
-            <option value="nota2" name="notaantiga">M02</option>
-            <option value="nota3" name="notaantiga">M03</option>
-            <option value="nota4" name="notaantiga">M04</option>
-            <option value="nota5" name="notaantiga">M011</option>
-            <option value="nota6" name="notaantiga">M012</option>
+        <select name="notaantiga">
+            <option value="nota1">M01</option>
+            <option value="nota2">M02</option>
+            <option value="nota3">M03</option>
+            <option value="nota4">M04</option>
+            <option value="nota5">M011</option>
+            <option value="nota6">M012</option>
         </select>
         <label for="nota">Nota nova:</label>
         <input type="text" name="notanova" id="notanova" required><br>

@@ -134,8 +134,24 @@
 			$dadesAlumne = explode(":", $alumne);
 			$idAlumneActual = $dadesAlumne[0];
 			if($idAlumneActual == $id){
-				$dadesAlumne[$notaantiga] = $notanova;
-				$alumne = implode(":",$dadesAlumne);
+				if($notaantiga == "nota1"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$notanova.":".$dadesAlumne[4].":".$dadesAlumne[5].":".$dadesAlumne[6].":".$dadesAlumne[7].":".$dadesAlumne[8];
+				}
+				if($notaantiga == "nota2"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$notanova.":".$dadesAlumne[5].":".$dadesAlumne[6].":".$dadesAlumne[7].":".$dadesAlumne[8];
+				}
+				if($notaantiga == "nota3"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$notanova.":".$dadesAlumne[6].":".$dadesAlumne[7].":".$dadesAlumne[8];
+				}
+				if($notaantiga == "nota4"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$dadesAlumne[5].":".$notanova.":".$dadesAlumne[7].":".$dadesAlumne[8];
+				}
+				if($notaantiga == "nota5"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$dadesAlumne[5].":".$dadesAlumne[6].":".$notanova.":".$dadesAlumne[8];
+				}
+				if($notaantiga == "nota6"){
+					$alumne = $id.":".$dadesAlumne[1].":".$dadesAlumne[2].":".$dadesAlumne[3].":".$dadesAlumne[4].":".$dadesAlumne[5].":".$dadesAlumne[6].":".$dadesAlumne[7].":".$notanova;
+				}
 			}
 			array_push($alumnes_nou,$alumne);
 		}
