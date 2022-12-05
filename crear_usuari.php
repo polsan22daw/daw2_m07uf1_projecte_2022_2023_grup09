@@ -47,7 +47,7 @@
 			<br>
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
-		<p><a href="menu.php">Torna al menú</a></p>
+		<p><a href="interficie_admin.php">Torna al menú</a></p>
 		<label class="diahora">
 		<?php
 			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['nom']."</p>";

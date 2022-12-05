@@ -56,10 +56,17 @@
 	}
 	
 	function fActualitzaUsuaris($nomUsuari,$ctsnya,$tipus){
+		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
+		$usuaris_nou = array();
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
-		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus."\n";
-		if ($fp=fopen(FITXER_USUARIS,"a")) {
-			if (fwrite($fp,$dades_nou_usuari)){
+		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus;
+		array_push($usuaris_nou,$dades_nou_usuari);
+		foreach ($usuaris as $usuari) {
+			array_push($usuaris_nou,$usuari);
+		}
+		$usuaris_nou = implode(PHP_EOL,$usuaris_nou);
+		if ($fp=fopen(FITXER_USUARIS,"w")) {
+			if (fwrite($fp,$usuaris_nou)){
 				$afegit=true;
 			}
 			else{
