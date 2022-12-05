@@ -17,7 +17,7 @@ else{
 if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'])) && (isset($_POST['nota2'])) && (isset($_POST['nota3'])) && (isset($_POST['nota4'])) && (isset($_POST['nota5'])) && (isset($_POST['nota6']))){		
     $afegit=fNouAlumne($_POST['nom'],$_POST['cognom'],$_POST['nota1'],$_POST['nota2'],$_POST['nota3'],$_POST['nota4'],$_POST['nota5'],$_POST['nota6']);
     $_SESSION['afegit']=$afegit;
-    header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
+    header("refresh: 2; url=interficie_admin.php");
 }	
 
 ?>

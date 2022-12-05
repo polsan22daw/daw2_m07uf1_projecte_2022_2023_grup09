@@ -17,7 +17,7 @@ else{
 if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
     $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
     $_SESSION['modificat']=$modificat;
-    header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
+    header("refresh: 2; url=interficie_admin.php");
 }	
 
 ?>
@@ -55,7 +55,7 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
             echo "L'Usuari no ha estat modificat<br>";
             echo "Comprova si hi ha algún problema del sistema per poder canviar la nota<br>";
             header("refresh: 2; url=avis.php");
-            header("refresh: 2; url=modificar_alumne.php");
+            header("refresh: 2; url=modificar_notes.php");
         }
         unset($_SESSION['modificat']);
     } 

@@ -19,7 +19,7 @@
 	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari']))){		
 		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari']);
 		$_SESSION['afegit']=$afegit;
-		header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
+		header("refresh: 2; url=interficie_admin.php");
 	}			
 ?>
 <!DOCTYPE html>

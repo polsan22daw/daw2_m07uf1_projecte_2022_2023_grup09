@@ -18,7 +18,7 @@ else{
 if (isset($_POST['id'])){		
     $borrar=fBorraAlumne($_POST['id']);
     $_SESSION['borrar']=$borrar;
-    header("refresh: 5; url=interficie_admin.php"); // Passats 5 segons el navegador demana menu.php i es torna a menu.php.
+    header("refresh: 2; url=interficie_admin.php");
 }	
 
 ?>

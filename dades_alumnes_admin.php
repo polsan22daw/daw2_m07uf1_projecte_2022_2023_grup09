@@ -2,9 +2,7 @@
 // require("./biblioteca.php");
 
 session_start();
-if(!fAutoritzacio($_SESSION['nom'])){
-    header("Location: login.php");
-}
+
 echo "<h2>Nom d'usuari: ".$_SESSION
 ['nom']."</h2><br>";
 // if(fAutoritzacio($_SESSION['nom'])){
@@ -45,6 +43,9 @@ echo "<h2>Nom d'usuari: ".$_SESSION
     <tbody>
     <?php
         require("biblioteca.php");
+        if(!fAutoritzacio($_SESSION['nom'])){
+            header("Location: login.php");
+        }
         $llista = fLlegeixFitxer(FITXER_ALUMNES);
         fCreaTaula($llista,"alumnes");
     ?>

@@ -8,9 +8,6 @@
 	define('USR',"0");
 	define('FITXER_USUARIS',"./usuaris/usuaris");
 	define('FITXER_ALUMNES',"./dades/dadesalumnes");
-	// define('FITXER_PERSONAL',"/var/www/html/agendaV3/dades/familia_amics.txt");
-	// define('FITXER_PROFESSIONAL',"/var/www/html/agendaV3/dades/professional");
-	// define('FITXER_SERVEIS',"/var/www/html/agendaV3/dades/serveis");
 	//Namespaces
 	use Dompdf\Dompdf;
 	use Dompdf\Options;
@@ -78,6 +75,9 @@
 
 	function fNouAlumne($nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		if(($nota1>10 || $nota1<0) || ($nota2>10 || $nota2<0) || ($nota3>10 || $nota3<0) || ($nota4>10 || $nota4<0) || ($nota5>10 || $nota5<0) || ($nota6>10 || $nota6<0)){
+			return false;
+		}
 		$alumnes_nou = array();
 		$id = count($alumnes)+1;
 		$alumne = $id.":".$nom.":".$cognom.":".$nota1.":".$nota2.":".$nota3.":".$nota4.":".$nota5.":".$nota6;
@@ -103,6 +103,9 @@
 
 	function fBorraAlumne($id){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		if($id > count($alumnes) || $id < 1){
+			return false;
+		}
 		$alumnes_nou = array();
 		foreach ($alumnes as $alumne) {
 			$dadesAlumne = explode(":", $alumne);
@@ -129,6 +132,12 @@
 
 	function fModificarNota($id,$notaantiga,$notanova){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		if($id > count($alumnes) || $id < 1){
+			return false;
+		}
+		if($notanova > 10 || $notanova < 0){
+			return false;
+		}
 		$alumnes_nou = array();
 		foreach ($alumnes as $alumne) {
 			$dadesAlumne = explode(":", $alumne);
