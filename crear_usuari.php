@@ -1,6 +1,9 @@
 <?php
 	require("biblioteca.php");
 	session_start();
+	if(!fAutoritzacio($_SESSION['nom'])){
+		header("Location: login.php");
+	}
 	if (!isset($_SESSION['nom'])){
 		header("Location: error_acces.php");
 	}
