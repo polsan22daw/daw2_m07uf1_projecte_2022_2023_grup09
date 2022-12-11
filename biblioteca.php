@@ -60,6 +60,13 @@
 		$usuaris_nou = array();
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
 		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus;
+		foreach ($usuaris as $usuari) {
+			$dadesUsuari = explode(":", $usuari);
+			$nomUsuario = $dadesUsuari[0];
+			if($nomUsuario == $nomUsuari){
+				return false;
+			}
+		}
 		array_push($usuaris_nou,$dades_nou_usuari);
 		foreach ($usuaris as $usuari) {
 			array_push($usuaris_nou,$usuari);
@@ -86,7 +93,17 @@
 			return false;
 		}
 		$alumnes_nou = array();
-		$id = count($alumnes)+1;
+		$id = sprintf("%02d",count($alumnes)+1);
+		if($id>25){
+			return false;
+		}
+		foreach ($alumnes as $alumne) {
+			$dadesAlumne = explode(":", $alumne);
+			$idAlumne = $dadesAlumne[0];
+			if($idAlumne == $id){
+				return false;
+			}
+		}
 		$alumne = $id.":".$nom.":".$cognom.":".$nota1.":".$nota2.":".$nota3.":".$nota4.":".$nota5.":".$nota6;
 		array_push($alumnes_nou,$alumne);
 		foreach ($alumnes as $alumne) {
@@ -110,7 +127,7 @@
 
 	function fBorraAlumne($id){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		if($id > count($alumnes) || $id < 1){
+		if($id > 26 || $id <= 0){
 			return false;
 		}
 		$alumnes_nou = array();
@@ -121,6 +138,7 @@
 				array_push($alumnes_nou,$alumne);
 			}
 		}
+		
 		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
 			if (fwrite($fp,$alumnes_nou)){
@@ -139,7 +157,10 @@
 
 	function fModificarNota($id,$notaantiga,$notanova){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
-		if($id > count($alumnes) || $id < 1){
+		// if($id > count($alumnes) || $id < 1){
+		// 	return false;
+		// }
+		if($id > 26 || $id <= 0){
 			return false;
 		}
 		if($notanova > 10 || $notanova < 0){

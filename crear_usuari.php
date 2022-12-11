@@ -9,12 +9,12 @@
 	}
 	else{
 		$autoritzat=fAutoritzacio($_SESSION['nom']);
-		if(!$autoritzat){
+		if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+			header("Location: logout_expira_sessio.php");
+		}
+		else if(!$autoritzat){
 			header("Location: error_autoritzacio.php");
 		}
-	}
-	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
-		header("Location: logout_expira_sessio.php");
 	}
 	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari']))){		
 		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari']);
