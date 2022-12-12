@@ -46,7 +46,7 @@ if ((isset($_POST['nom'])) && (isset($_POST['ctsnya']))){
                 <a class="nav-link active" href="login.php">Autenticació</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="webinformativa.html">Web Informativa</a>
+                <a class="nav-link" href="webinformativa.html">Informació</a>
                 </li>
             </ul>
             </div>
