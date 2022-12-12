@@ -16,8 +16,8 @@
 			header("Location: error_autoritzacio.php");
 		}
 	}
-	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari']))){		
-		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari']);
+	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari'])) && (isset($_POST['extra_nou_usuari']))){		
+		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari'],$_POST['extra_nou_usuari']);
 		$_SESSION['afegit']=$afegit;
 		header("refresh: 2; url=interficie_admin.php");
 	}			
@@ -45,6 +45,10 @@
 			<input type="radio" name="tipus_nou_usuari" value=<?php echo USR ?> checked>Usuari de l'aplicació<br>
 			<input type="radio" name="tipus_nou_usuari" value=<?php echo ADMIN ?> >Administrador de l'aplicació<br>
 			<br>
+			<p>
+				<label>Informació extra (Nº telefon Usuari/ DNI Administrador):</label> 
+				<input type="number" name="extra_nou_usuari" title="Nº telefon Usuari/ DNI Administrador" required>
+			</p> 
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
 		<p><a href="interficie_admin.php">Torna al menú</a></p>

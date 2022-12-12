@@ -55,11 +55,17 @@
 		return $autenticat;
 	}
 	
-	function fActualitzaUsuaris($nomUsuari,$ctsnya,$tipus){
+	function fActualitzaUsuaris($nomUsuari,$ctsnya,$tipus,$extra){
 		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
-		$usuaris_nou = array();
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
-		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus;
+		if ($tipus==ADMIN) {
+			$user1= new Uadmin($nomUsuari,$ctsnya_hash,$tipus,$extra);
+		}
+		else if($tipus==USR){
+			$user1= new Ubasic($nomUsuari,$ctsnya_hash,$tipus,$extra);
+		}
+		$usuaris_nou = array();
+		$dades_nou_usuari= strval($user1->__toString());	
 		foreach ($usuaris as $usuari) {
 			$dadesUsuari = explode(":", $usuari);
 			$nomUsuario = $dadesUsuari[0];
@@ -232,5 +238,50 @@
 		}
 		return 0;
 	}
+class Usuaris 
+{
+	protected $nom;
+	protected $password;
+	protected $tipus;
+	function __construct($nom,$password,$tipus)
+	{
+		$this->nom=$nom;
+		$this->password=$password;
+		$this->tipus=$tipus;
+	}
+}
+class Ubasic extends Usuaris
+{
+	private $numTel;
+	function __construct($nom,$password,$tipus,$numTel)
+	{
+		$this->nom=$nom;
+		$this->password=$password;
+		$this->tipus=$tipus;
+		$this->numTel=$numTel;
+	}
+	public function __toString()
+	{
+		$texte=$this->nom . ":" . $this->password . ":" . $this->tipus . ":" . $this->numTel;
+		return $texte;
+	}
+
+}
+class Uadmin extends Usuaris
+{
+	private $dni;
+	function __construct($nom,$password,$tipus,$dni)
+	{
+		$this->nom=$nom;
+		$this->password=$password;
+		$this->tipus=$tipus;
+		$this->dni=$dni;
+	}
+	public function __toString()
+	{
+		$texte=$this->nom . ":" . $this->password . ":" . $this->tipus . ":" . $this->dni;
+		return $texte;
+	}
+}
 
 ?>
