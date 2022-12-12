@@ -21,31 +21,38 @@ if ((isset($_POST['nom'])) && (isset($_POST['ctsnya']))){
     }	
 }	
 ?>
-
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="CSS/estilsinici.css" rel="stylesheet" type="text/css">
-        <TITLE>Projecte M07 - UF1</TITLE>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+    
 </head>
-
-<body>
-    <nav>
-        <a href="Inici.html">Enrera</a>
-    </nav>
-    <form method="post" action="login.php">
-        <table>
-            <tr><td><label>Autenticació</label></td></tr>
-            <tr><td><label>Nom nom</label></td></tr>
-            <tr><td><input type="text" name="nom"/></td></tr>
-
-            <tr><td><label>Contrasenya</label></td></tr>
-            <tr><td><input type="password" name="ctsnya"/></td></tr>
-
-            <tr><td><input type="submit" value="login"/></td></tr>
-        </table>
-    </form>
+<body class="text-center" cz-shortcut-listen="true">
+    <main class="form-signin w-100 m-auto">
+        <form action="login.php" method="post">
+          <h1 class="h3 mb-3 fw-normal">Pol&Marc.SL</h1>
+          <div class="form-floating">
+            <input type="text" class="form-control" name="nom" placeholder="admin123">
+            <label>Usuari</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" name="ctsnya" placeholder="Contrasenya">
+            <label>Contrasenya</label>
+          </div>
+      
+          <div class="checkbox mb-3">
+            <label>
+            <a href="Inici.html">Enrera</a>
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Inicia Sessió</button>
+          <p class="mt-5 mb-3 text-muted">© 2022–2023</p>
+        </form>
+      </main>
 </body>
-
 </html>
