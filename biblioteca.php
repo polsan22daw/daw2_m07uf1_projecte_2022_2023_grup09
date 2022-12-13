@@ -110,7 +110,8 @@
 				return false;
 			}
 		}
-		$alumne = $id.":".$nom.":".$cognom.":".$nota1.":".$nota2.":".$nota3.":".$nota4.":".$nota5.":".$nota6;
+		$alumne1= new Alumne($id,$nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6);
+		$alumne = strval($alumne1->__toString());
 		array_push($alumnes_nou,$alumne);
 		foreach ($alumnes as $alumne) {
 			array_push($alumnes_nou,$alumne);
@@ -276,9 +277,7 @@ class Ubasic extends Usuaris
 	private $numTel;
 	function __construct($nom,$password,$tipus,$numTel)
 	{
-		$this->nom=$nom;
-		$this->password=$password;
-		$this->tipus=$tipus;
+		parent::__construct($nom,$password,$tipus);
 		$this->numTel=$numTel;
 	}
 	public function __toString()
@@ -293,9 +292,7 @@ class Uadmin extends Usuaris
 	private $dni;
 	function __construct($nom,$password,$tipus,$dni)
 	{
-		$this->nom=$nom;
-		$this->password=$password;
-		$this->tipus=$tipus;
+		parent::__construct($nom,$password,$tipus);
 		$this->dni=$dni;
 	}
 	public function __toString()
@@ -304,5 +301,35 @@ class Uadmin extends Usuaris
 		return $texte;
 	}
 }
+class Alumne
+{
+	private $id;
+	private $nom;
+	private $cognom;
+	private $nota1;
+	private $nota2;
+	private $nota3;
+	private $nota4;
+	private $nota5;
+	private $nota6;
+	function __construct($id,$nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6)
+	{
+		$this->id=$id;
+		$this->nom=$nom;
+		$this->cognom=$cognom;
+		$this->nota1=$nota1;
+		$this->nota2=$nota2;
+		$this->nota3=$nota3;
+		$this->nota4=$nota4;
+		$this->nota5=$nota5;
+		$this->nota6=$nota6;
+	}
+	public function __toString()
+	{
+		$texte=$this->id . ":" . $this->nom . ":" . $this->cognom . ":" . $this->nota1 . ":" . $this->nota2 . ":" . $this->nota3 . ":" . $this->nota4 . ":" . $this->nota5 . ":" . $this->nota6;
+		return $texte;
+	}
+}
+
 
 ?>

@@ -1,27 +1,22 @@
 <?php
-require("./biblioteca.php");
-
-session_start();
-if(!fAutoritzacio($_SESSION['nom'])){
-    header("Location: login.php");
-}
-echo "<h2>Nom d'usuari: ".$_SESSION
-['nom']."</h2><br>";
-if(fAutoritzacio($_SESSION['nom'])){
-    echo "<h2>Usuari administrador</h2><br>";
-}
-else{
-    echo "<h2>Usuari normal</h2><br>";
-}
-
-if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'])) && (isset($_POST['nota2'])) && (isset($_POST['nota3'])) && (isset($_POST['nota4'])) && (isset($_POST['nota5'])) && (isset($_POST['nota6']))){		
-    $afegit=fNouAlumne($_POST['nom'],$_POST['cognom'],$_POST['nota1'],$_POST['nota2'],$_POST['nota3'],$_POST['nota4'],$_POST['nota5'],$_POST['nota6']);
-    $_SESSION['afegit']=$afegit;
-    header("refresh: 2; url=interficie_admin.php");
-}	
-
+    require("./biblioteca.php");
+    session_start();
+    if(!fAutoritzacio($_SESSION['nom'])){
+        header("Location: login.php");
+    }
+    echo"<h2>Nom d'usuari: ".$_SESSION['nom']."</h2><br>";
+    if(fAutoritzacio($_SESSION['nom'])){
+        echo"<h2>Usuari administrador</h2><br>";
+    }
+    else{
+        echo"<h2>Usuari normal</h2><br>";
+    }
+    if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'])) && (isset($_POST['nota2'])) && (isset($_POST['nota3'])) && (isset($_POST['nota4'])) && (isset($_POST['nota5'])) && (isset($_POST['nota6']))){		
+        $afegit=fNouAlumne($_POST['nom'],$_POST['cognom'],$_POST['nota1'],$_POST['nota2'],$_POST['nota3'],$_POST['nota4'],$_POST['nota5'],$_POST['nota6']);
+        $_SESSION['afegit']=$afegit;
+        header("refresh: 2; url=interficie_admin.php");
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +46,7 @@ if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'
         <input type="submit" value="Crear">
     </form>
     
-    <?php
+<?php
     if (isset($_SESSION['afegit'])){
         if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
         else{
@@ -61,11 +56,11 @@ if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'
             header("refresh: 2; url=crear_alumne.php");
         }
         unset($_SESSION['afegit']);
-    } 
+    }
 
     echo "<button onclick='window.location.href=\"interficie_admin.php\"'>Tornar enrera</button><br><br>";
     echo "<button onclick='window.location.href=\"logout.php\"'>Logout</button>";
-    ?>
+?>
 </body>
 </html>
 
