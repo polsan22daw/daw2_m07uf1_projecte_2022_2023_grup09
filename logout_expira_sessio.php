@@ -17,7 +17,7 @@
         <p>L'aplicació finalitza la sessió automàticament si es supera el temps d'expiració de la sessió</p>
         <p>Per poder continuar treballan cal tornar a iniciar una sessió</p>
         <p>L'aplicació ha finalitzat la sessió automàticament i cal validar-se novament</p>
-		<p><a href="index.php">Torna a la pàgina inicial</a></p>
+		<p><a href="inici.html">Torna a la pàgina inicial</a></p>
 		<p><a href="login.php">Torna a la pàgina d'inici de sessió</a></p>
 		<label class="diahora"> 
         <?php
