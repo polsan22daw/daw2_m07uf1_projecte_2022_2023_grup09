@@ -36,8 +36,6 @@ if ((isset($_POST['nom'])) && (isset($_POST['cognom'])) && (isset($_POST['nota1'
         <input type="text" name="nom" id="nom" required><br>
         <label for="cognom">Cognom:</label>
         <input type="text" name="cognom" id="cognom" required><br>
-        <!-- <label for="id">Identificador:</label>
-        <input type="number" name="id" id="id" required><br> -->
         <label for="nota">Nota M01:</label>
         <input type="number" name="nota1" id="nota1" required><br>
         <label for="nota">Nota M02:</label>
