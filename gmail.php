@@ -25,9 +25,26 @@ $mail->Subject = 'Notes dels alumnes';
 
 require("biblioteca.php");
 $llista = fLlegeixFitxer(FITXER_ALUMNES);
-fCreaTaula($llista,"alumnes");
-//body con la tabla de alumnos
-$mail->Body = 'Las notas son: ' . $cuerpo;
+$cuerpo=fRetornaAlumnes($llista,"alumnes");
+$mail->Body = '<p>Notes dels alumnes:</p>
+<table>
+<thead>
+            <tr>
+                <th>Id</th>
+                <th>Noms</th>
+                <th>Cognom</th>
+                <th>Nota M01 (Sistemes Operatius)</th>
+                <th>Nota M02 (Bases de Dades)</th>
+                <th>Nota M03 (Programació)</th>
+                <th>Nota M04 (Llenguatge de marques i XML)</th>
+                <th>Nota M011 (FOL)</th>
+                <th>Nota M012 (EIE)</th>
+            </tr>
+        </thead>
+<tbody>
+' . $cuerpo . '
+</tbody>
+</table>';
 
 if (!$mail->send()) {
     echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;

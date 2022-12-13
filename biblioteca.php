@@ -238,6 +238,27 @@
 		}
 		return 0;
 	}
+	function fRetornaAlumnes($llista,$tipus){
+		$alumnes = array();
+		foreach ($llista as $entrada) {
+			$dadesEntrada = explode(":", $entrada);
+			$id = $dadesEntrada[0];
+			$nom = $dadesEntrada[1];
+			$cognom = $dadesEntrada[2];
+			$nota1 = $dadesEntrada[3];
+			$nota2 = $dadesEntrada[4];
+			$nota3 = $dadesEntrada[5];
+			$nota4 = $dadesEntrada[6];
+			$nota5 = $dadesEntrada[7];
+			$nota6 = $dadesEntrada[8];
+			if ($tipus=="alumnes"){
+				//push
+				$alumne="<tr><td>$id</td><td>$nom</td><td>$cognom</td><td>$nota1</td><td>$nota2</td><td>$nota3</td><td>$nota4</td><td>$nota5</td><td>$nota6</td></tr>";
+				array_push($alumnes,$alumne) ;
+			}				
+		}
+		return implode("\n",$alumnes);
+	}
 class Usuaris 
 {
 	protected $nom;
