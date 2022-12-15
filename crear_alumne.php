@@ -50,57 +50,38 @@
         </div>
     </nav>
     <h4>Creació nou alumne</h4>
-    <!-- <form action="crear_alumne.php" method="post">
-        <label for="nom">Nom:</label>
-        <input type="text" name="nom" id="nom" required><br>
-        <label for="cognom">Cognom:</label>
-        <input type="text" name="cognom" id="cognom" required><br>
-        <label for="nota">Nota M01:</label>
-        <input type="number" name="nota1" id="nota1" required><br>
-        <label for="nota">Nota M02:</label>
-        <input type="number" name="nota2" id="nota2" required><br>
-        <label for="nota">Nota M03:</label>
-        <input type="number" name="nota3" id="nota3" required><br>
-        <label for="nota">Nota M04:</label>
-        <input type="number" name="nota4" id="nota4" required><br>
-        <label for="nota">Nota M011:</label>
-        <input type="number" name="nota5" id="nota5" required><br>
-        <label for="nota">Nota M012:</label>
-        <input type="number" name="nota6" id="nota6" required><br><br>
-        <input type="submit" class="btn btn-outline-success" value="Crear">
-    </form> -->
     <form action="crear_alumne.php" method="post">
         <div>
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="nom" class="form-label">Nom</label>
             <input type="text" name="nom" id="nom" class="form-control" aria-describedby="emailHelp" required >
         </div>
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="cognom" class="form-label">Cognom</label>
             <input type="text" name="cognom" id="cognom" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M01</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M01</label>
             <input type="number" name="nota1" id="nota1" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M02</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M02</label>
             <input type="number" name="nota2" id="nota2" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M03</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M03</label>
             <input type="number" name="nota3" id="nota3" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M04</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M04</label>
             <input type="number" name="nota4" id="nota4" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M11</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M11</label>
             <input type="number" name="nota5" id="nota5" required class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-check-label" for="nota">Nota M12</label>
+        <div class="mb-1">
+            <label class="form-label" for="nota">Nota M12</label>
             <input type="number" name="nota6" id="nota6" required class="form-control">
         </div>
         </div>
