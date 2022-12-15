@@ -5,8 +5,6 @@ session_start();
 if(fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
-echo "<h2>Temps d'expiració: ".$_SESSION
-['expira']."</h2><br>";
 
 ?>
 
@@ -68,7 +66,7 @@ echo "<h2>Temps d'expiració: ".$_SESSION
             echo '<button type="button" class="btn btn-outline-warning" id="g5" onclick="window.location.href=\'crear_usuari.php\'">Crear nou usuari</button>';
             }
             else{
-                echo '<button type="button" class="btn btn-outline-dark" id="g2" onclick="window.location.href=\'dades_alumnes_admin.php\'">Veure dades alumnes</button>';
+                echo '<button type="button" class="btn btn-outline-dark" id="g2" onclick="window.location.href=\'dades_alumnes_basic.php\'">Veure dades alumnes</button>';
             }
         ?>
     </div>

@@ -47,9 +47,9 @@ $mail->Body = '<p>Notes dels alumnes:</p>
 </table>';
 
 if (!$mail->send()) {
-    echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;
+    echo 'Missatge no enviat, un error ha sigut trobat: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent.';
+    echo 'Missatge enviat correctament.';
 }
 
 echo "<script>alert('Email enviado correctamente');</script>";
