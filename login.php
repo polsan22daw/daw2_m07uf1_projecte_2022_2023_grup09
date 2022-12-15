@@ -9,12 +9,7 @@ if ((isset($_POST['nom'])) && (isset($_POST['ctsnya']))){
         $_SESSION['nom'] = $_POST['nom'];
         //$_SESSION['nom'] EMMAGATZEMA EL NOM DE L'nom VALIDAT
         $_SESSION['expira'] = time() + TEMPS_EXPIRACIO;
-        if(fAutoritzacio($_POST['nom'])){
-            header("Location: interficie_admin.php");
-        }
-        else{
-            header("Location: interficie_usuari.php");
-        }	
+        header("Location: interficie.php");
     }
     if (!isset($_SESSION['nom'])){
         header("Location: avis.php");

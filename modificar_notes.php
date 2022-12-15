@@ -5,14 +5,6 @@ session_start();
 if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
-// echo "<h2>Nom d'usuari: ".$_SESSION
-// ['nom']."</h2><br>";
-// if(fAutoritzacio($_SESSION['nom'])){
-//     echo "<h2>Usuari administrador</h2><br>";
-// }
-// else{
-//     echo "<h2>Usuari normal</h2><br>";
-// }
 
 if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
     $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
