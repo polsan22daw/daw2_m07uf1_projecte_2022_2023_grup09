@@ -7,3 +7,15 @@ body {
 #usuari{
     margin-left: 70%;
 }
+h4 {
+    text-align: center;
+}
+form{
+    margin-left: 40%;
+    margin-right: 35%;
+    margin-top: 8%;
+}
+.diahora{
+    margin-left: 40%;
+    margin-top: 2%;
+}

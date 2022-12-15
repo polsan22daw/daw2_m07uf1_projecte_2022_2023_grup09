@@ -16,13 +16,13 @@
 		if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 			header("Location: logout_expira_sessio.php");
 		}
-	}	
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador de l'agenda</title>
+		<title>logout</title>
 		<link rel="stylesheet" href="logout.css">
     	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -48,14 +48,27 @@
             </div>
         </div>
     </nav>
-		<h3><b>Finalització de sessió</b></h3>
-        <p>Estàs segur que vols finalitzar la sessió?:</p>
-        <form action="logout.php" method="POST">
-			<input type="radio" name="resp" value="y"/>Sí<br/>
-			<input type="radio" name="resp" value="n" checked/>No<br/>
-			<br>
-			<input type="submit" value="Valida" />
-		</form>
+		<h4>Finalització de sessió</h4>
+		<form action="logout.php" method="POST">
+        <div>
+        <div class="mb-3">
+            <label class="form-label" for="resp">Estàs segur que vols finalitzar la sessió?</label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="resp" id="resp" value="y">
+				<label class="form-check-label" for="resp">
+					Sí
+				</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="resp" id="resp" value="n" checked>
+				<label class="form-check-label" for="resp">
+					No
+				</label>
+			</div>
+        </div>
+        </div>
+        <input type="submit" class="btn btn-outline-danger" value="Valida">
+    </form>
 		<label class="diahora"> 
         <?php
 			
@@ -68,8 +81,8 @@
 				}
 			}
 			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";						
+			echo "Data i hora: ".date('d/m/Y h:i:s');						
         ?>
-         <label class="diahora"> 
+         </label> 
 	</body>
 </html> 
