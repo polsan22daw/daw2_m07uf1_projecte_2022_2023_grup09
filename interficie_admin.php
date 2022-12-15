@@ -46,25 +46,27 @@ if(!fAutoritzacio($_SESSION['nom'])){
             </div>
         </div>
     </nav>
-
-    <nav>
-    <h4>Interficie admin</h4>
+    <?php
+    if(fAutoritzacio($_SESSION['nom'])){
+        echo "<h4>Interficie admin</h4>";
+    }
+    else{
+        echo "<h4>Interficie usuari</h4>";
+    }
+    ?>
     <div class="fercosas">
         <?php
-        echo '<button type="button" class="btn btn-outline-primary" id="g1" onclick="window.location.href=\'crear_alumne.php\'">Crear alumne</button>';
-        echo '<button type="button" class="btn btn-outline-dark" id="g2" onclick="window.location.href=\'dades_alumnes_admin.php\'">Veure dades alumnes</button>';
-        echo '<button type="button" class="btn btn-outline-success" id="g3" onclick="window.location.href=\'modificar_notes.php\'">Modificar notes</button>';
-        echo '<button type="button" class="btn btn-outline-danger" id="g4" onclick="window.location.href=\'esborrar_alumne.php\'">Esborrar un alumne</button>';
-        echo '<button type="button" class="btn btn-outline-warning" id="g5" onclick="window.location.href=\'crear_usuari.php\'">Crear nou usuari</button>';
+            if(fAutoritzacio($_SESSION['nom'])){
+            echo '<button type="button" class="btn btn-outline-primary" id="g1" onclick="window.location.href=\'crear_alumne.php\'">Crear alumne</button>';
+            echo '<button type="button" class="btn btn-outline-dark" id="g2" onclick="window.location.href=\'dades_alumnes_admin.php\'">Veure dades alumnes</button>';
+            echo '<button type="button" class="btn btn-outline-success" id="g3" onclick="window.location.href=\'modificar_notes.php\'">Modificar notes</button>';
+            echo '<button type="button" class="btn btn-outline-danger" id="g4" onclick="window.location.href=\'esborrar_alumne.php\'">Esborrar un alumne</button>';
+            echo '<button type="button" class="btn btn-outline-warning" id="g5" onclick="window.location.href=\'crear_usuari.php\'">Crear nou usuari</button>';
+            }
+            else{
+                echo '<button type="button" class="btn btn-outline-dark" id="g2" onclick="window.location.href=\'dades_alumnes_admin.php\'">Veure dades alumnes</button>';
+            }
         ?>
     </div>
-        <ul>
-            <li><a href="crear_alumne.php">Crear alumne</a></li>
-            <li><a href="dades_alumnes_admin.php">Veure dade alumnes</a></li>
-            <li><a href="modificar_notes.php">Modificar notes</a></li>
-            <li><a href="esborrar_alumne.php">Esborrar un alumne</a></li>
-            <li><a href="crear_usuari.php">Crear nou usuari</a></li>
-        </ul>
-    </nav>
 </body>
 </html>

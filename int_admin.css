@@ -1,5 +1,4 @@
 body {
-    padding-bottom: 20px;
     background-color: #f5f5f5;
 }
   .navbar {
@@ -13,6 +12,7 @@ h4 {
 }
 .fercosas{
     margin-top: 10%;
+    height: 180px;
     display: grid;
     grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px;
     grid-template-columns: auto auto auto auto auto auto auto auto;
