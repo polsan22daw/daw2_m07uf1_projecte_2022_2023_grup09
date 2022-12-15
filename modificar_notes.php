@@ -6,10 +6,12 @@ if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
 
-if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
-    $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
-    $_SESSION['modificat']=$modificat;
-    header("refresh: 2; url=interficie.php");
+if (isset($_POST['metode']) == 'PUT'){
+    if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
+        $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
+        $_SESSION['modificat']=$modificat;
+        header("refresh: 2; url=interficie.php");
+    }	
 }	
 
 ?>
@@ -52,6 +54,7 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
     </nav>
     <h4>Modificar notes</h4>
     <form action="modificar_notes.php" method="post">
+        <input type="hidden" name="metode" value="PUT"/>
         <div>
             <div class="mb-1">
                 <label for="id" class="form-label">Id d'Alumne</label>

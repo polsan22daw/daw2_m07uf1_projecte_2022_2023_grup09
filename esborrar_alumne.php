@@ -6,12 +6,11 @@ if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
 
-
-if (isset($_POST['id'])){		
+if (isset($_POST['metode']) == 'DELETE'){
     $borrar=fBorraAlumne($_POST['id']);
     $_SESSION['borrar']=$borrar;
     header("refresh: 2; url=interficie.php");
-}	
+}
 
 ?>
 
@@ -55,6 +54,7 @@ if (isset($_POST['id'])){
     <form action="esborrar_alumne.php" method="post">
         <div class="mb-3">
             <div>
+                <input type="hidden" name="metode" value="DELETE"/>
                 <label for="nom" class="form-label">Id d'Alumne</label>
                 <input type="text" name="id" id="id" class="form-control" required >
             </div>
