@@ -49,10 +49,6 @@ if (isset($_POST['id'])){
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
     <h4>Esborrar alumne</h4>
@@ -69,10 +65,7 @@ if (isset($_POST['id'])){
     if (isset($_SESSION['borrar'])){
         if ($_SESSION['borrar']) echo "<p style='color:green'>L'Alumne ha estat esborrat correctament</p>";
         else{
-            echo "<p>L'Alumne no ha estat esborrat</p>";
-            echo "<p>Comprova si hi ha algún problema del sistema per poder esborrar usuaris</p>";
-            header("refresh: 2; url=avis.php");
-            //header("refresh: 2; url=esborrar_alumne.php");
+            header("refresh: 0; url=avisesborraalumn.php");
         }
         unset($_SESSION['borrar']);
     } 

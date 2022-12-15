@@ -41,10 +41,6 @@ if (!isset($_SESSION['nom'])){
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
     <h1>Visualitzacio dades alumnes</h1>

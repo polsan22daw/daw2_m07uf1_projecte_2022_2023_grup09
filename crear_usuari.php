@@ -50,32 +50,9 @@
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
-		<h4>Creació d'Usuaris</h4>		
-		<!-- <form action="crear_usuari.php" method="POST">			
-			<p>
-				<label>Nom del nou usuari:</label> 
-				<input type="text" name="nom_nou_usuari" required>
-			</p>
-			<p>
-				<label>Contrasenya del nou usuari:</label> 
-				<input type="password" name="cts_nou_usuari" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Mínims: 8 caràcters, una majúscula, una minúscula, un número i un caràter especial" required>
-			</p> 
-			<label>Tipus d'usuari de l'aplicació</label><br>
-			<input type="radio" name="tipus_nou_usuari" value=<?php echo USR ?> checked>Usuari de l'aplicació<br>
-			<input type="radio" name="tipus_nou_usuari" value=<?php echo ADMIN ?> >Administrador de l'aplicació<br>
-			<br>
-			<p>
-				<label>Informació extra (Nº telefon Usuari/ DNI Administrador):</label> 
-				<input type="number" name="extra_nou_usuari" title="Nº telefon Usuari/ DNI Administrador" required>
-			</p> 
-			<input type="submit" value="Enregistra el nou usuari"/>
-		</form> -->
+		<h4>Creació d'Usuaris</h4>
 		<form action="crear_usuari.php" method="post">
         <div>
         <div class="mb-1">
@@ -115,8 +92,7 @@
 			if (isset($_SESSION['afegit'])){
 				if ($_SESSION['afegit']) echo "<p style='color:green'>L'Usuari ha estat registrat correctament</p>";
 				else{
-					echo "<p>L'Usuari no ha estat registrat</p>";
-					echo "<p>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p>";
+					header("refresh: 0; url=aviscreauser.php");
 				}
 				unset($_SESSION['afegit']);
 			} 

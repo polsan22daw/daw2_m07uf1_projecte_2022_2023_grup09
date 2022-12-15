@@ -48,27 +48,8 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
-    <!-- <form action="modificar_notes.php" method="post">
-        <label for="id">Id del alumne:</label>
-        <input type="text" name="id" id="id" required><br>
-        <select name="notaantiga">
-            <option value="nota1">M01</option>
-            <option value="nota2">M02</option>
-            <option value="nota3">M03</option>
-            <option value="nota4">M04</option>
-            <option value="nota5">M011</option>
-            <option value="nota6">M012</option>
-        </select>
-        <label for="nota">Nota nova:</label>
-        <input type="text" name="notanova" id="notanova" required><br>
-        <input type="submit" value="Modificar">
-    </form> -->
     <h4>Modificar notes</h4>
     <form action="modificar_notes.php" method="post">
         <div>
@@ -103,10 +84,7 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
     if (isset($_SESSION['modificat'])){
         if ($_SESSION['modificat']) echo "<p style='color:green'>Nota canviada correctament</p>";
         else{
-            echo "<p>L'Usuari no ha estat modificat<p>";
-            echo "<p>Comprova si hi ha algún problema del sistema per poder canviar la nota</p>";
-            header("refresh: 2; url=avis.php");
-            header("refresh: 2; url=modificar_notes.php");
+            header("refresh: 0; url=avismodalumn.php");
         }
         unset($_SESSION['modificat']);
     } 

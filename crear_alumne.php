@@ -43,10 +43,6 @@
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
     <h4>Creació nou alumne</h4>
@@ -91,10 +87,7 @@
     if (isset($_SESSION['afegit'])){
         if ($_SESSION['afegit']) echo "<p style='color:green'>L'Alumne ha estat registrat correctament</p>";
         else{
-            echo "<p>L'Alumne no ha estat registrat</p>";
-            echo "<p>Comprova si hi ha algún problema del sistema per poder enregistrar nous alumnes</p>";
-            header("refresh: 2; url=avis.php");
-            header("refresh: 2; url=crear_alumne.php");
+            header("refresh: 0; url=aviscreaalumn.php");
         }
         unset($_SESSION['afegit']);
     }
