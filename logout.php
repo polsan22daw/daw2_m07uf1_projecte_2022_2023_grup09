@@ -65,10 +65,10 @@
 			
 			if ((isset($_POST['resp'])) && ($_POST['resp']=="n")){
 				if(fAutoritzacio($_SESSION['nom'])){
-					header("Location: interficie_admin.php");
+					header("Location: interficie.php");
 				}
 				else{	
-					header("Location: interficie_usuari.php");
+					header("Location: interficie.php");
 				}
 			}
 			date_default_timezone_set('Europe/Andorra');

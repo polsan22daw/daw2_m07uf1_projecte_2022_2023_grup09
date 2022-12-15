@@ -9,7 +9,7 @@ if(!fAutoritzacio($_SESSION['nom'])){
 if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
     $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
     $_SESSION['modificat']=$modificat;
-    header("refresh: 2; url=interficie_admin.php");
+    header("refresh: 2; url=interficie.php");
 }	
 
 ?>
@@ -81,7 +81,7 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
         }
         unset($_SESSION['modificat']);
     } 
-    echo "<button onclick='window.location.href=\"interficie_admin.php\"'>Tornar enrera</button><br><br>";
+    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
     ?>
 </body>
 </html>

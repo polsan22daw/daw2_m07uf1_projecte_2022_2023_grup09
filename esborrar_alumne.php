@@ -5,20 +5,12 @@ session_start();
 if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
-// echo "<h2>Nom d'usuari: ".$_SESSION
-// ['nom']."</h2><br>";
-// if(fAutoritzacio($_SESSION['nom'])){
-//     echo "<h2>Usuari administrador</h2><br>";
-// }
-// else{
-//     echo "<h2>Usuari normal</h2><br>";
-// }
 
 
 if (isset($_POST['id'])){		
     $borrar=fBorraAlumne($_POST['id']);
     $_SESSION['borrar']=$borrar;
-    header("refresh: 2; url=interficie_admin.php");
+    header("refresh: 2; url=interficie.php");
 }	
 
 ?>
@@ -80,7 +72,7 @@ if (isset($_POST['id'])){
         }
         unset($_SESSION['borrar']);
     } 
-    echo "<button onclick='window.location.href=\"interficie_admin.php\"'>Tornar enrera</button><br><br>";
+    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
     ?>
 </body>
 </html>

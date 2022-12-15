@@ -19,7 +19,7 @@
 	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari'])) && (isset($_POST['extra_nou_usuari']))){		
 		$afegit=fActualitzaUsuaris($_POST['nom_nou_usuari'],$_POST['cts_nou_usuari'],$_POST['tipus_nou_usuari'],$_POST['extra_nou_usuari']);
 		$_SESSION['afegit']=$afegit;
-		header("refresh: 2; url=interficie_admin.php");
+		header("refresh: 2; url=interficie.php");
 	}			
 ?>
 <!DOCTYPE html>
@@ -80,7 +80,7 @@
 			</p> 
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
-		<p><a href="interficie_admin.php">Torna al menú</a></p>
+		<p><a href="interficie.php">Torna al menú</a></p>
 		<label class="diahora">
 		<?php
 			date_default_timezone_set('Europe/Andorra');

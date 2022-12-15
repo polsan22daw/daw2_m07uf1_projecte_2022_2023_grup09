@@ -3,15 +3,9 @@
 
 session_start();
 require("biblioteca.php");
-// echo "<h2>Nom d'usuari: ".$_SESSION
-// ['nom']."</h2><br>";
-// if(fAutoritzacio($_SESSION['nom'])){
-//     echo "<h2>Usuari administrador</h2><br>";
-// }
-// else{
-//     echo "<h2>Usuari normal</h2><br>";
-// }
-
+if (!isset($_SESSION['nom'])){
+    header("Location: avis.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +77,7 @@ require("biblioteca.php");
 
     <?php
     echo "<br><button onclick='window.location.href=\"crear_pdf.php\"'>Crear PDF de la taula de notes</button><br><br>";
-    echo "<button onclick='window.location.href=\"interficie_usuari.php\"'>Tornar enrera</button><br><br>";
+    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
     echo "<button onclick='window.location.href=\"logout.php\"'>Logout</button>";
     ?>
     
