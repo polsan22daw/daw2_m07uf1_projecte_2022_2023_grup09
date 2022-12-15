@@ -1,6 +1,13 @@
 <?php
 require("./biblioteca.php");
-
+session_start();
+		//Alliberant variables de sessió. Esborra el contingut de les variables de sessió del fitxer de sessió. Buida l'array $_SESSION. No esborra cookies
+		session_unset();
+		//Destrucció de la cookie de sessió dins del navegador
+		$cookie_sessio = session_get_cookie_params();
+		setcookie("PHPSESSID","",time()-3600,$cookie_sessio['path'], $cookie_sessio['domain'], $cookie_sessio['secure'], $cookie_sessio['httponly']); //Neteja cookie de sessió
+		//Destrucció de la informació de sessió (per exemple, el fitxer de sessió  o l'identificador de sessió) 
+		session_destroy();
 echo "<p class='esuperior'>Error d'autenticacio.</p>";
 echo "<p>Espera 10 segons.</p>";
 header("refresh: ".ERROR."; url=login.php");
