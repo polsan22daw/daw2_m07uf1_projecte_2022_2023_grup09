@@ -20,3 +20,7 @@ form{
     left: 87%;
     bottom: 6%;
 }
+p{
+    text-align: center;
+    color: red;
+}

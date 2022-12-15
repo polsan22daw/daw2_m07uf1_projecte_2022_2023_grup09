@@ -10,3 +10,17 @@ body {
 h4 {
     text-align: center;
 }
+form{
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5%;
+}
+#torna{
+    position: fixed;
+    left: 87%;
+    bottom: 6%;
+}
+p{
+    text-align: center;
+    color: red;
+}

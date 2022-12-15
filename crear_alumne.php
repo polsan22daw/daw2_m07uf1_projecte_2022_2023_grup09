@@ -54,7 +54,7 @@
         <div>
         <div class="mb-1">
             <label for="nom" class="form-label">Nom</label>
-            <input type="text" name="nom" id="nom" class="form-control" aria-describedby="emailHelp" required >
+            <input type="text" name="nom" id="nom" class="form-control" required >
         </div>
         <div class="mb-1">
             <label for="cognom" class="form-label">Cognom</label>
@@ -89,10 +89,10 @@
     </form>
 <?php
     if (isset($_SESSION['afegit'])){
-        if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+        if ($_SESSION['afegit']) echo "<p style='color:green'>L'Alumne ha estat registrat correctament</p>";
         else{
-            echo "L'Usuari no ha estat registrat<br>";
-            echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+            echo "<p>L'Alumne no ha estat registrat</p>";
+            echo "<p>Comprova si hi ha algún problema del sistema per poder enregistrar nous alumnes</p>";
             header("refresh: 2; url=avis.php");
             header("refresh: 2; url=crear_alumne.php");
         }

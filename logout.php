@@ -46,10 +46,6 @@
                 }
             ?></a>
             </div>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            
-            </div>
         </div>
     </nav>
 		<h3><b>Finalització de sessió</b></h3>

@@ -7,7 +7,7 @@ if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
 if (!isset($_SESSION['nom'])){
-    header("Location: avis.php");
+    header("Location: login.php");
 }
 ?>
 

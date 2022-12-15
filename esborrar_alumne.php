@@ -25,7 +25,7 @@ if (isset($_POST['id'])){
     <link rel="stylesheet" href="esb_alum.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <title>Eliminació alumne</title>
+    <title>Esborrar alumne</title>
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -55,24 +55,28 @@ if (isset($_POST['id'])){
             </div>
         </div>
     </nav>
-    <p>introdueix el id del alumne que vols eliminar</p>
+    <h4>Esborrar alumne</h4>
     <form action="esborrar_alumne.php" method="post">
-            <label for="nom">Id:</label>
-            <input type="text" name="id" id="id" required><br>
-            <input type="submit" value="Borrar">
+        <div class="mb-3">
+            <div>
+                <label for="nom" class="form-label">Id d'Alumne</label>
+                <input type="text" name="id" id="id" class="form-control" required >
+            </div>
+        </div>
+        <input type="submit" class="btn btn-outline-danger" value="Esborra">
     </form>
 <?php
     if (isset($_SESSION['borrar'])){
-        if ($_SESSION['borrar']) echo "<p style='color:red'>L'Usuari ha estat esborrat correctament</p>";
+        if ($_SESSION['borrar']) echo "<p style='color:green'>L'Alumne ha estat esborrat correctament</p>";
         else{
-            echo "L'Usuari no ha estat esborrat<br>";
-            echo "Comprova si hi ha algún problema del sistema per poder esborrar usuaris<br>";
-            // header("refresh: 2; url=avis.php");
-            header("refresh: 2; url=esborrar_alumne.php");
+            echo "<p>L'Alumne no ha estat esborrat</p>";
+            echo "<p>Comprova si hi ha algún problema del sistema per poder esborrar usuaris</p>";
+            header("refresh: 2; url=avis.php");
+            //header("refresh: 2; url=esborrar_alumne.php");
         }
         unset($_SESSION['borrar']);
     } 
-    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
+    echo "<button class='btn btn-outline-primary' id='torna' onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
     ?>
 </body>
 </html>

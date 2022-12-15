@@ -3,7 +3,7 @@ require("./biblioteca.php");
 
 session_start();
 if (!isset($_SESSION['nom'])){
-    header("Location: avis.php");
+    header("Location: login.php");
 }
 ?>
 <!DOCTYPE html>

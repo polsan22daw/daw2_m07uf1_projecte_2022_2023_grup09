@@ -54,7 +54,7 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
             </div>
         </div>
     </nav>
-    <form action="modificar_notes.php" method="post">
+    <!-- <form action="modificar_notes.php" method="post">
         <label for="id">Id del alumne:</label>
         <input type="text" name="id" id="id" required><br>
         <select name="notaantiga">
@@ -68,20 +68,49 @@ if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['not
         <label for="nota">Nota nova:</label>
         <input type="text" name="notanova" id="notanova" required><br>
         <input type="submit" value="Modificar">
+    </form> -->
+    <h4>Modificar notes</h4>
+    <form action="modificar_notes.php" method="post">
+        <div>
+            <div class="mb-1">
+                <label for="id" class="form-label">Id d'Alumne</label>
+                <input type="text" name="id" id="id" class="form-control" required >
+            </div>
+            <div class="mb-1">
+                <label for="nota" class="form-label">Nota nova</label>
+                <div class="container text-center mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <select class="form-select" name="notaantiga">
+                            <option value="nota1">M01</option>
+                            <option value="nota2">M02</option>
+                            <option value="nota3">M03</option>
+                            <option value="nota4">M04</option>
+                            <option value="nota5">M011</option>
+                            <option value="nota6">M012</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="number" name="notanova" id="notanova" required class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-outline-warning" value="Modificar">
     </form>
-
 <?php
     if (isset($_SESSION['modificat'])){
-        if ($_SESSION['modificat']) echo "<p style='color:red'>Nota canviada correctament</p>";
+        if ($_SESSION['modificat']) echo "<p style='color:green'>Nota canviada correctament</p>";
         else{
-            echo "L'Usuari no ha estat modificat<br>";
-            echo "Comprova si hi ha algún problema del sistema per poder canviar la nota<br>";
+            echo "<p>L'Usuari no ha estat modificat<p>";
+            echo "<p>Comprova si hi ha algún problema del sistema per poder canviar la nota</p>";
             header("refresh: 2; url=avis.php");
             header("refresh: 2; url=modificar_notes.php");
         }
         unset($_SESSION['modificat']);
     } 
-    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
+    echo "<button class='btn btn-outline-primary' id='torna' onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
     ?>
 </body>
 </html>

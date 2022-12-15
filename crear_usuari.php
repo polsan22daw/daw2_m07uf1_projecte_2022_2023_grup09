@@ -4,16 +4,13 @@
 	if(!fAutoritzacio($_SESSION['nom'])){
 		header("Location: login.php");
 	}
-	if (!isset($_SESSION['nom'])){
-		header("Location: error_acces.php");
-	}
 	else{
 		$autoritzat=fAutoritzacio($_SESSION['nom']);
 		if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 			header("Location: logout_expira_sessio.php");
 		}
 		else if(!$autoritzat){
-			header("Location: error_autoritzacio.php");
+			header("Location: login.php");
 		}
 	}
 	if ((isset($_POST['nom_nou_usuari'])) && (isset($_POST['cts_nou_usuari'])) && (isset($_POST['tipus_nou_usuari'])) && (isset($_POST['extra_nou_usuari']))){		
@@ -59,9 +56,8 @@
             </div>
         </div>
     </nav>
-		<h3><b>Creació de nous Usuaris</b></h3>
-		<p><b>Indica les dades de l'usuari a registrar dins de l'aplicació: </b></p>			
-		<form action="crear_usuari.php" method="POST">			
+		<h4>Creació d'Usuaris</h4>		
+		<!-- <form action="crear_usuari.php" method="POST">			
 			<p>
 				<label>Nom del nou usuari:</label> 
 				<input type="text" name="nom_nou_usuari" required>
@@ -79,20 +75,52 @@
 				<input type="number" name="extra_nou_usuari" title="Nº telefon Usuari/ DNI Administrador" required>
 			</p> 
 			<input type="submit" value="Enregistra el nou usuari"/>
-		</form>
-		<p><a href="interficie.php">Torna al menú</a></p>
-		<label class="diahora">
+		</form> -->
+		<form action="crear_usuari.php" method="post">
+        <div>
+        <div class="mb-1">
+            <label for="nom_nou_usuari" class="form-label">Nom</label>
+            <input type="text" name="nom_nou_usuari" id="nom_nou_usuari" class="form-control" required >
+        </div>
+        <div class="mb-1">
+            <label for="cts_nou_usuari" class="form-label">Contrasenya</label>
+            <input type="password" name="cts_nou_usuari" id="cts_nou_usuari" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Mínims: 8 caràcters, una majúscula, una minúscula, un número i un caràter especial" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="tipus_nou_usuari">Tipus d'usuari</label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="tipus_nou_usuari" id="tipus_nou_usuari" value=<?php echo ADMIN ?>>
+				<label class="form-check-label" for="tipus_nou_usuari">
+					Administrador de l'aplicacio
+				</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="tipus_nou_usuari" id="tipus_nou_usuari" value=<?php echo USR ?> checked>
+				<label class="form-check-label" for="tipus_nou_usuari">
+					Usuari de l'aplicacio
+			</label>
+			</div>
+        </div>
+        <div class="mb-3">
+			<label for="extra_nou_usuari" class="form-label">Informació extra</label>
+			<input type="number" name="extra_nou_usuari" required class="form-control" aria-describedby="extrainfo">
+			<div id="extrainfo" class="form-text">
+			Nº telefon Usuari/ DNI Administrador
+			</div>
+        </div>
+        </div>
+        <input type="submit" class="btn btn-outline-success" value="Crear">
+    </form>
 		<?php
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
 			if (isset($_SESSION['afegit'])){
-				if ($_SESSION['afegit']) echo "<p style='color:red'>L'Usuari ha estat registrat correctament</p>";
+				if ($_SESSION['afegit']) echo "<p style='color:green'>L'Usuari ha estat registrat correctament</p>";
 				else{
-					echo "L'Usuari no ha estat registrat<br>";
-					echo "Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris<br>";
+					echo "<p>L'Usuari no ha estat registrat</p>";
+					echo "<p>Comprova si hi ha algún problema del sistema per poder enregistrar nous usuaris</p>";
 				}
 				unset($_SESSION['afegit']);
 			} 
+			echo "<button class='btn btn-outline-primary' id='torna' onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
         ?>
 		</label>
 	</body>

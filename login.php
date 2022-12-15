@@ -12,7 +12,7 @@ if ((isset($_POST['nom'])) && (isset($_POST['ctsnya']))){
         header("Location: interficie.php");
     }
     if (!isset($_SESSION['nom'])){
-        header("Location: avis.php");
+        header("Location: avisaut.php");
     }	
 }	
 ?>
