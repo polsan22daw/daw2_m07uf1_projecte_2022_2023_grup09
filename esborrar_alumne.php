@@ -10,6 +10,9 @@ if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 }
 if (isset($_POST['metode']) == 'DELETE'){
     $borrar=fBorraAlumne($_POST['id']);
+    if ($borrar == false) {
+        header("refresh: 0; url=avisesborraalumn.php");
+    }
     $_SESSION['borrar']=$borrar;
     header("refresh: 2; url=interficie.php");
 }

@@ -17,6 +17,9 @@
 	function fLlegeixFitxer($nomFitxer){
 		if ($fp=fopen($nomFitxer,"r")) {
 			$midaFitxer=filesize($nomFitxer);
+			if ($midaFitxer==0) {
+				return false;
+			}
 			$dades = explode(PHP_EOL, fread($fp,$midaFitxer));
 			// array_pop($dades);		
 			fclose($fp);
@@ -58,6 +61,9 @@
 	function fActualitzaUsuaris($nomUsuari,$ctsnya,$tipus,$extra){
 		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
+		if (strpos($nomUsuari, ' ') !== false) {
+			return false;
+		}
 		if ($tipus==ADMIN) {
 			$user1= new Uadmin($nomUsuari,$ctsnya_hash,$tipus,$extra);
 		}
@@ -92,29 +98,48 @@
 		}
 		return $afegit;
 	}
-
+	function fcomprovaid($id){
+		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		$cont=0;
+		if (!$alumnes==null) {
+		foreach ($alumnes as $alumne) {
+			$dadesAlumne = explode(":", $alumne);
+			$idAlumne = $dadesAlumne[0];
+			if($idAlumne == $id){
+				$cont++;
+			}
+		}
+		}
+		if($cont==0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	function fNouAlumne($nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
 		if(($nota1>10 || $nota1<0) || ($nota2>10 || $nota2<0) || ($nota3>10 || $nota3<0) || ($nota4>10 || $nota4<0) || ($nota5>10 || $nota5<0) || ($nota6>10 || $nota6<0)){
 			return false;
 		}
+		$cont=0;
 		$alumnes_nou = array();
-		$id = sprintf("%02d",count($alumnes)+1);
+		for ($i=1; $i < 26; $i++) { 
+			$id = sprintf("%02d",$i);
+			if (fcomprovaid($id)==true) {
+				break;
+			}
+		}
 		if($id>25){
 			return false;
-		}
-		foreach ($alumnes as $alumne) {
-			$dadesAlumne = explode(":", $alumne);
-			$idAlumne = $dadesAlumne[0];
-			if($idAlumne == $id){
-				return false;
-			}
 		}
 		$alumne1= new Alumne($id,$nom,$cognom,$nota1,$nota2,$nota3,$nota4,$nota5,$nota6);
 		$alumne = strval($alumne1->__toString());
 		array_push($alumnes_nou,$alumne);
-		foreach ($alumnes as $alumne) {
-			array_push($alumnes_nou,$alumne);
+		if (!$alumnes==null) {
+			foreach ($alumnes as $alumne) {
+				array_push($alumnes_nou,$alumne);
+			}
 		}
 		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
@@ -134,6 +159,9 @@
 
 	function fBorraAlumne($id){
 		$alumnes = fLlegeixFitxer(FITXER_ALUMNES);
+		if ($alumnes==null) {
+			return false;
+		}
 		if($id > 26 || $id <= 0){
 			return false;
 		}
@@ -145,8 +173,12 @@
 				array_push($alumnes_nou,$alumne);
 			}
 		}
-		
 		$alumnes_nou = implode(PHP_EOL,$alumnes_nou);
+		if ($alumnes_nou==null) {
+			$fp=fopen(FITXER_ALUMNES,"w");
+			fwrite($fp,$alumnes_nou);
+			return true;
+		}
 		if ($fp=fopen(FITXER_ALUMNES,"w")) {
 			if (fwrite($fp,$alumnes_nou)){
 				$borrat=true;
