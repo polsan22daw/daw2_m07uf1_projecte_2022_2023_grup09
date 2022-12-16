@@ -75,6 +75,9 @@ if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
             session_destroy();
             header("Location: login.php");
         }
+        if (fLlegeixFitxer(FITXER_ALUMNES)==false) {
+            header("Location: avisvisalumnadm.php");
+        }
         $llista = fLlegeixFitxer(FITXER_ALUMNES);
         fCreaTaula($llista,"alumnes");
     ?>
