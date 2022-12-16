@@ -17,6 +17,9 @@
 			header("Location: logout_expira_sessio.php");
 		}
 	}
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: logout_expira_sessio.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ca">

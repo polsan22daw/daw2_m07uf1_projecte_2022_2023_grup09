@@ -6,6 +6,9 @@ require("biblioteca.php");
 if (!isset($_SESSION['nom'])){
     header("Location: login.php");
 }
+if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+    header("Location: logout_expira_sessio.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +18,12 @@ if (!isset($_SESSION['nom'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inici</title>
-    <link rel="stylesheet" href="dades_alum_basic.css">
+    <link rel="stylesheet" href="dades_alum_admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
         <?php
             echo "<button type='button' class='btn btn-light' onclick='window.location.href=\"logout.php\"'>Logout</button>";
@@ -43,10 +46,10 @@ if (!isset($_SESSION['nom'])){
             </div>
         </div>
     </nav>
-    <h1>Visualitzacio dades alumnes</h1>
+    <h4>Visualitzacio dades alumnes</h4>
 
-    <table>
-    <thead>
+    <table class="table table-striped table-hover table-bordered border-dark">
+    <thead class="table-dark">
 				<tr>
                     <th>Id</th>
 					<th>Noms</th>
@@ -61,8 +64,15 @@ if (!isset($_SESSION['nom'])){
 			</thead>
     <tbody>
     <?php
-        
         if(fAutoritzacio($_SESSION['nom'])){
+            session_start();
+            //Alliberant variables de sessió. Esborra el contingut de les variables de sessió del fitxer de sessió. Buida l'array $_SESSION. No esborra cookies
+            session_unset();
+            //Destrucció de la cookie de sessió dins del navegador
+            $cookie_sessio = session_get_cookie_params();
+            setcookie("PHPSESSID","",time()-3600,$cookie_sessio['path'], $cookie_sessio['domain'], $cookie_sessio['secure'], $cookie_sessio['httponly']); //Neteja cookie de sessió
+            //Destrucció de la informació de sessió (per exemple, el fitxer de sessió  o l'identificador de sessió) 
+            session_destroy();
             header("Location: login.php");
         }
         $llista = fLlegeixFitxer(FITXER_ALUMNES);
@@ -70,12 +80,9 @@ if (!isset($_SESSION['nom'])){
     ?>
     </tbody>
     </table>
-
     <?php
-    echo "<br><button onclick='window.location.href=\"crear_pdf.php\"'>Crear PDF de la taula de notes</button><br><br>";
-    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
-    echo "<button onclick='window.location.href=\"logout.php\"'>Logout</button>";
-    ?>
-    
+    echo "<br><button id='pdf' class='btn btn-outline-danger' onclick='window.location.href=\"crear_pdf.php\"'>Crear PDF</button><br><br>";
+    echo "<button id='torna' class='btn btn-outline-primary' onclick='window.location.href=\"interficie.php\"'>Torna enrera</button><br><br>";
+    ?>  
 </body>
 </html>

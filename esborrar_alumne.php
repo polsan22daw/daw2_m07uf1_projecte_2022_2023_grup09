@@ -5,7 +5,9 @@ session_start();
 if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
-
+if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+    header("Location: logout_expira_sessio.php");
+}
 if (isset($_POST['metode']) == 'DELETE'){
     $borrar=fBorraAlumne($_POST['id']);
     $_SESSION['borrar']=$borrar;

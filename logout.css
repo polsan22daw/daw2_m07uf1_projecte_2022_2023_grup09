@@ -9,6 +9,7 @@ body {
 }
 h4 {
     text-align: center;
+    padding-top: 1%;
 }
 form{
     margin-left: 40%;
@@ -18,4 +19,20 @@ form{
 .diahora{
     margin-left: 40%;
     margin-top: 2%;
+}
+#tornainici{
+    position: absolute;
+    left: 45%;
+    top: 45%;
+}
+p{
+    text-align: center;
+    padding-top: 6%;
+}
+.diahoraexp{
+    margin-left: 40%;
+}
+#barra{
+    width: 100%;
+    height: 55px;
 }

@@ -7,12 +7,33 @@ body {
 #usuari{
     margin-left: 70%;
 }
-table {
-    border-collapse: collapse;
+h4 {
+    text-align: center;
 }
-
-th,td {
-    border: 1px solid #999;
-    padding: 0.5rem;
-    text-align: left;
+table {
+    margin-top: 7% !important;
+    width: 80% !important;
+    margin-left: 3%;
+}
+td, th{
+    text-align: center;
+}
+thead{
+    text-align: center;
+    vertical-align: middle !important;
+}
+#torna{
+    position: fixed;
+    left: 87%;
+    bottom: 6%;
+}
+#gmail{
+    position: absolute;
+    left: 87%;
+    bottom: 51%;
+}
+#pdf{
+    position: absolute;
+    left: 87%;
+    bottom: 61%;
 }

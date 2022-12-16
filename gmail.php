@@ -49,8 +49,7 @@ $mail->Body = '<p>Notes dels alumnes:</p>
 if (!$mail->send()) {
     echo 'Missatge no enviat, un error ha sigut trobat: ' . $mail->ErrorInfo;
 } else {
-    echo 'Missatge enviat correctament.';
+    echo "<script>alert('Correu enviat correctament');</script>";
+    header("refresh: 0; url=interficie.php");
 }
-
-echo "<script>alert('Email enviado correctamente');</script>";
 ?>

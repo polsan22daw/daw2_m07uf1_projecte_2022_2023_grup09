@@ -6,6 +6,9 @@ require("biblioteca.php");
 if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
+if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+    header("Location: logout_expira_sessio.php");
+}
 if (!isset($_SESSION['nom'])){
     header("Location: login.php");
 }
@@ -46,10 +49,10 @@ if (!isset($_SESSION['nom'])){
             </div>
         </div>
     </nav>
-    <h1>Visualitzacio dades alumnes</h1>
+    <h4>Visualitzacio dades alumnes</h4>
 
-    <table>
-    <thead>
+    <table class="table table-striped table-hover table-bordered border-dark">
+    <thead class="table-dark">
 				<tr>
                     <th>Id</th>
 					<th>Noms</th>
@@ -66,6 +69,14 @@ if (!isset($_SESSION['nom'])){
     <?php
         
         if(!fAutoritzacio($_SESSION['nom'])){
+            session_start();
+            //Alliberant variables de sessió. Esborra el contingut de les variables de sessió del fitxer de sessió. Buida l'array $_SESSION. No esborra cookies
+            session_unset();
+            //Destrucció de la cookie de sessió dins del navegador
+            $cookie_sessio = session_get_cookie_params();
+            setcookie("PHPSESSID","",time()-3600,$cookie_sessio['path'], $cookie_sessio['domain'], $cookie_sessio['secure'], $cookie_sessio['httponly']); //Neteja cookie de sessió
+            //Destrucció de la informació de sessió (per exemple, el fitxer de sessió  o l'identificador de sessió) 
+            session_destroy();
             header("Location: login.php");
         }
         $llista = fLlegeixFitxer(FITXER_ALUMNES);
@@ -73,12 +84,10 @@ if (!isset($_SESSION['nom'])){
     ?>
     </tbody>
     </table>
-
     <?php
-    echo "<br><button onclick='window.location.href=\"crear_pdf.php\"'>Crear PDF de la taula de notes</button><br><br>";
-    echo "<button onclick='window.location.href=\"gmail.php\"'>Enviar G-mail</button><br><br>";
-    echo "<button onclick='window.location.href=\"interficie.php\"'>Tornar enrera</button><br><br>";
-    ?>
-    
+    echo "<br><button id='pdf' class='btn btn-outline-danger' onclick='window.location.href=\"crear_pdf.php\"'>Crear PDF</button><br><br>";
+    echo "<button id='gmail' class='btn btn-outline-warning' onclick='window.location.href=\"gmail.php\"'>Enviar G-mail</button><br><br>";
+    echo "<button id='torna' class='btn btn-outline-primary' onclick='window.location.href=\"interficie.php\"'>Torna enrera</button><br><br>";
+    ?>  
 </body>
 </html>

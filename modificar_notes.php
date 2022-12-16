@@ -5,7 +5,9 @@ session_start();
 if(!fAutoritzacio($_SESSION['nom'])){
     header("Location: login.php");
 }
-
+if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+    header("Location: logout_expira_sessio.php");
+}
 if (isset($_POST['metode']) == 'PUT'){
     if ((isset($_POST['id'])) && (isset($_POST['notaantiga'])) && (isset($_POST['notanova']))){
         $modificat=fModificarNota($_POST['id'],$_POST['notaantiga'],$_POST['notanova']);
